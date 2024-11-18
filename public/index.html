@@ -59,7 +59,7 @@
     }
 
     p, a {
-	font-family: 'Comfortaa', Arial, sans-serif; 
+      font-family: 'Comfortaa', Arial, sans-serif; 
       font-size: 1em; 
       line-height: 1.6em;
     }
@@ -170,21 +170,20 @@
     </form>
     <h3>bookmarks</h3>
     <div class="links">
-
       <a href="/proxy/https:/bing.com">Bing Search</a>
       <a href="/proxy/https:/youtube.com">YouTube</a>
       <a href="/proxy/https:/tiktok.com/explore">TikTok</a>
       <a href="/proxy/https:/reddit.com">Reddit</a>
       <p>More coming soon!!</p>
     </div>
-	  <center>
-    <h3>About vel0city</h3>
-    <p>vel0city is designed to be extremely fast and compatible: It processes the data on-the-fly rather than buffering the entire response, and it only modifies URLs when necessary - meaning you can bookmark unblocked tabs!. </p>
-	  <p>I can't use google as it crashes the unblocker servers :|</p>
-    <div class="footer">
-      <p><a href="https://youtube.com/@imcalledfyre" title="Subscribe">Sub to imcalledfyre for more links</a></p>
-	  </center>
-    </div>
+    <center>
+      <h3>About vel0city</h3>
+      <p>vel0city is designed to be extremely fast and compatible: It processes the data on-the-fly rather than buffering the entire response, and it only modifies URLs when necessary - meaning you can bookmark unblocked tabs!.</p>
+      <p>I can't use google as it crashes the unblocker servers :|</p>
+      <div class="footer">
+        <p><a href="https://youtube.com/@imcalledfyre" title="Subscribe">Sub to imcalledfyre for more links</a></p>
+      </div>
+    </center>
   </div>
   <script>
     function $(id) {
@@ -193,7 +192,7 @@
 
     $('unblocker-form').onsubmit = function () {
       var url = $('url').value.trim();
-      var isSearch = /\s/.test(url) || !/\.[a-z]{2,}$/.test(url);
+      var isSearch = !/\.[a-z]{2,}$/.test(url) && !/^https?:\/\//i.test(url);
 
       if (isSearch) {
         // Redirect to Bing Search
