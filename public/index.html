@@ -3,12 +3,158 @@
 <head>
   <title>vel0city | freedom at your fingertips</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- header font -->
   <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet" type="text/css">
+  
+  <!-- body font -->
   <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
   
   <style type="text/css">
-    /* Your existing styles remain unchanged */
-    /* ... */
+    /* Global font styles */
+    body { 
+      font-family: 'Comfortaa', Arial, sans-serif; 
+      color: #ffffff; 
+      margin: 0; 
+      padding: 0; 
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364); 
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      min-height: 100vh;
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 { 
+      font-family: 'Comfortaa', Arial, sans-serif; 
+      text-align: center; 
+      color: #f8b400; 
+      font-size: 2.5em; 
+      margin-bottom: 20px; 
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    h3 {
+      font-size: 1.5em; 
+      color: #62BECB;
+      text-align: center; 
+      margin-top: 30px;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.8); 
+      border-radius: 15px; 
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); 
+      width: 90%; 
+      max-width: 800px; 
+      padding: 20px; 
+      text-align: left;
+    }
+
+    p, a {
+	font-family: 'Comfortaa', Arial, sans-serif; 
+      font-size: 1em; 
+      line-height: 1.6em;
+    }
+
+    a {
+      color: #62BECB;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #f8b400;
+    }
+
+    #error {
+      border: 1px dashed #ff4c4c; 
+      background: rgba(255, 76, 76, 0.2); 
+      padding: 10px; 
+      margin: 20px 0; 
+      border-radius: 8px; 
+      display: none; 
+    }
+
+    form p {
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px; 
+      border: 1px solid #62BECB; 
+      border-radius: 5px; 
+      flex: 1; 
+      margin-right: 10px; 
+      background: rgba(255, 255, 255, 0.1); 
+      color: #ffffff; 
+      font-size: 1em;
+    }
+
+    input[type="submit"] {
+      background: #62BECB; 
+      border: none; 
+      border-radius: 5px; 
+      color: white; 
+      padding: 10px 20px; 
+      font-size: 1em; 
+      cursor: pointer; 
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    input[type="submit"]:hover {
+      background: #f8b400;
+      transform: translateY(-2px);
+    }
+
+    .footer {
+      text-align: center; 
+      margin-top: 30px; 
+      font-size: 0.9em;
+    }
+
+    .footer a {
+      font-size: 0.9em;
+      color: #62BECB;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+
+    /* Additional Styling for Links Section */
+    .links {
+      display: flex; 
+      flex-wrap: wrap; 
+      justify-content: space-around; 
+      margin-top: 20px;
+    }
+
+    .links a {
+      padding: 10px 20px; 
+      border-radius: 5px; 
+      background: rgba(255, 255, 255, 0.1); 
+      margin: 5px;
+      text-align: center; 
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .links a:hover {
+      background: #62BECB; 
+      color: #000000; 
+      transition: background 0.3s ease, color 0.3s ease;
+    }
   </style>
 </head>
 <body>
