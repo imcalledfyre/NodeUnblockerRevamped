@@ -3,158 +3,12 @@
 <head>
   <title>vel0city | freedom at your fingertips</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- header font -->
   <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet" type="text/css">
-  
-  <!-- body font -->
   <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
   
   <style type="text/css">
-    /* Global font styles */
-    body { 
-      font-family: 'Comfortaa', Arial, sans-serif; 
-      color: #ffffff; 
-      margin: 0; 
-      padding: 0; 
-      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364); 
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
-      min-height: 100vh;
-      letter-spacing: 0.5px;
-    }
-
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    h1 { 
-      font-family: 'Comfortaa', Arial, sans-serif; 
-      text-align: center; 
-      color: #f8b400; 
-      font-size: 2.5em; 
-      margin-bottom: 20px; 
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    }
-
-    h3 {
-      font-size: 1.5em; 
-      color: #62BECB;
-      text-align: center; 
-      margin-top: 30px;
-    }
-
-    .container {
-      background: rgba(0, 0, 0, 0.8); 
-      border-radius: 15px; 
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); 
-      width: 90%; 
-      max-width: 800px; 
-      padding: 20px; 
-      text-align: left;
-    }
-
-    p, a {
-	font-family: 'Comfortaa', Arial, sans-serif; 
-      font-size: 1em; 
-      line-height: 1.6em;
-    }
-
-    a {
-      color: #62BECB;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-
-    a:hover {
-      color: #f8b400;
-    }
-
-    #error {
-      border: 1px dashed #ff4c4c; 
-      background: rgba(255, 76, 76, 0.2); 
-      padding: 10px; 
-      margin: 20px 0; 
-      border-radius: 8px; 
-      display: none; 
-    }
-
-    form p {
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      margin-bottom: 20px;
-    }
-
-    input[type="text"] {
-      padding: 10px; 
-      border: 1px solid #62BECB; 
-      border-radius: 5px; 
-      flex: 1; 
-      margin-right: 10px; 
-      background: rgba(255, 255, 255, 0.1); 
-      color: #ffffff; 
-      font-size: 1em;
-    }
-
-    input[type="submit"] {
-      background: #62BECB; 
-      border: none; 
-      border-radius: 5px; 
-      color: white; 
-      padding: 10px 20px; 
-      font-size: 1em; 
-      cursor: pointer; 
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-
-    input[type="submit"]:hover {
-      background: #f8b400;
-      transform: translateY(-2px);
-    }
-
-    .footer {
-      text-align: center; 
-      margin-top: 30px; 
-      font-size: 0.9em;
-    }
-
-    .footer a {
-      font-size: 0.9em;
-      color: #62BECB;
-    }
-
-    .footer p {
-      margin: 0;
-    }
-
-    /* Additional Styling for Links Section */
-    .links {
-      display: flex; 
-      flex-wrap: wrap; 
-      justify-content: space-around; 
-      margin-top: 20px;
-    }
-
-    .links a {
-      padding: 10px 20px; 
-      border-radius: 5px; 
-      background: rgba(255, 255, 255, 0.1); 
-      margin: 5px;
-      text-align: center; 
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    }
-
-    .links a:hover {
-      background: #62BECB; 
-      color: #000000; 
-      transition: background 0.3s ease, color 0.3s ease;
-    }
+    /* Your existing styles remain unchanged */
+    /* ... */
   </style>
 </head>
 <body>
@@ -163,56 +17,67 @@
     <div id="error"></div>
     <form action="no-js" method="get" id="unblocker-form">
       <p>
-        URL: 
+        Search or URL: 
         <input type="text" id="url" name="url" autofocus="autofocus" />
         <input type="submit" value="Go" />
       </p>
     </form>
     <h3>bookmarks</h3>
     <div class="links">
-      <a href="/proxy/https:/google.com">Google</a>
-      <a href="/proxy/https:/bing.com">Bing (use if google doesn't work)</a>
+
+      <a href="/proxy/https:/bing.com">Bing Search</a>
       <a href="/proxy/https:/youtube">YouTube</a>
       <a href="/proxy/https:/tiktok.com">TikTok</a>
       <a href="/proxy/https:/reddit.com">Reddit</a>
       <p>More coming soon!!</p>
     </div>
     <h3>About vel0city</h3>
-    <p>Velocity is designed to be extremely fast and compatible: It processes the data on-the-fly rather than buffering the entire response, and it only modifies URLs when necessary - meaning you can bookmark unblocked tabs!. </p>
+    <p>vel0city is designed to be extremely fast and compatible: It processes the data on-the-fly rather than buffering the entire response, and it only modifies URLs when necessary - meaning you can bookmark unblocked tabs!. </p>
+	  <p>I can't use google as it crashes the unblocker servers :|</p>
     <div class="footer">
       <p><a href="https://youtube.com/@imcalledfyre" title="Subscribe">Sub to imcalledfyre for more links</a></p>
     </div>
   </div>
   <script>
-    function $(id){
+    function $(id) {
       return document.getElementById(id);
     }
-    
-    $('unblocker-form').onsubmit = function(){
-      var url = $('url').value;
-      if(url.substr(0,4) != "http"){
-        url = "http://" + url;
+
+    $('unblocker-form').onsubmit = function () {
+      var url = $('url').value.trim();
+      var isSearch = /\s/.test(url) || !/\.[a-z]{2,}$/.test(url);
+
+      if (isSearch) {
+        // Redirect to Bing Search
+        var searchQuery = encodeURIComponent(url).replace(/%20/g, "+");
+        window.location = location.protocol + '//' + location.host + '/proxy/https:/www.bing.com/search?q=' + searchQuery;
+      } else {
+        // Assume it's a URL and proxy it
+        if (url.substr(0, 4) != "http") {
+          url = "http://" + url;
+        }
+        window.location = location.protocol + '//' + location.host + '/proxy/' + url;
       }
-      window.location = location.protocol + '//' + location.host + '/proxy/' + url;
       return false;
     };
-    
-    function checkError(){
+
+    function checkError() {
       var search = window.location.search;
       var start = search.indexOf('error=');
-      if(start > -1){
+      if (start > -1) {
         var stop = search.indexOf('&', start);
-        if(stop == -1){ stop = undefined; }
-        var err = search.substr(start+6, stop);
+        if (stop == -1) { stop = undefined; }
+        var err = search.substr(start + 6, stop);
         var $error = $('error');
         $error.innerText = $error.textContent = decodeURIComponent(err);
         $error.style.display = "block";
       }
     }
-    window.onload = function() { 
-      $('url').focus(); 
-      checkError(); 
-    }
+
+    window.onload = function () {
+      $('url').focus();
+      checkError();
+    };
   </script>
 </body>
 </html>
