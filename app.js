@@ -1,86 +1,89 @@
 /***************
  * node-unblocker: Web Proxy for evading firewalls and content filters.
  * 
- *
- *
- * This project is hosted on github:  https://github.com/nfriedly/nodeunblocker.com
- *
- * Made by Nathan Friedly - http://nfriedly.com
- * Modifyed by Manny Baez - https://github.com/xMannyGamingx
- * Released under the terms of the Affero GPL v3
- */
+ * GitHub: https://github.com/nfriedly/nodeunblocker.com
+ * Modified by Manny Baez: https://github.com/xMannyGamingx
+ * Licensed under the Affero GPL v3
+ ***************/
 
+const express = require('express');
+const { Transform } = require('stream');
+const querystring = require('querystring');
+const url = require('url');
+const Unblocker = require('unblocker');
+const youtube = require('unblocker/examples/youtube/youtube.js');
 
-var url = require('url');
-var querystring = require('querystring');
-var express = require('express');
-var Unblocker = require('unblocker');
-var Transform = require('stream').Transform;
-var youtube = require('unblocker/examples/youtube/youtube.js')
+const app = express();
+const google_analytics_id = process.env.GA_ID || null;
 
-var app = express();
-
-var google_analytics_id = process.env.GA_ID || null;
-
+// Google Analytics injection middleware
 function addGa(html) {
-    if (google_analytics_id) {
-        var ga = [
-            "<script type=\"text/javascript\">",
-            "var _gaq = []; // overwrite the existing one, if any",
-            "_gaq.push(['_setAccount', '" + google_analytics_id + "']);",
-            "_gaq.push(['_trackPageview']);",
-            "(function() {",
-            "  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;",
-            "  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';",
-            "  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);",
-            "})();",
-            "</script>"
-            ].join("\n");
-        html = html.replace("</body>", ga + "\n\n</body>");
-    }
-    return html;
+    if (!google_analytics_id) return html;
+
+    const gaScript = `
+        <script async src="https://www.googletagmanager.com/gtag/js?id=${google_analytics_id}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', '${google_analytics_id}');
+        </script>
+    `;
+    return html.replace("</body>", `${gaScript}\n</body>`);
 }
 
 function googleAnalyticsMiddleware(data) {
-    if (data.contentType == 'text/html') {
-
-        // https://nodejs.org/api/stream.html#stream_transform
-        data.stream = data.stream.pipe(new Transform({
-            decodeStrings: false,
-            transform: function(chunk, encoding, next) {
-                this.push(addGa(chunk.toString()));
-                next();
-            }
-        }));
+    if (data.contentType === 'text/html') {
+        data.stream = data.stream.pipe(
+            new Transform({
+                decodeStrings: false,
+                transform(chunk, encoding, next) {
+                    this.push(addGa(chunk.toString()));
+                    next();
+                },
+            })
+        );
     }
 }
 
-var unblocker = new Unblocker({
+// Unblocker configuration
+const unblocker = new Unblocker({
     prefix: '/proxy/',
     requestMiddleware: [
-        youtube.processRequest
+        youtube.processRequest,
+        (req) => {
+            // Add headers to bypass common restrictions
+            req.headers['x-requested-with'] = 'XMLHttpRequest';
+            delete req.headers['x-frame-options'];
+            delete req.headers['content-security-policy'];
+        },
     ],
     responseMiddleware: [
-        googleAnalyticsMiddleware
-    ]
+        googleAnalyticsMiddleware,
+        (data) => {
+            if (data.contentType.startsWith('text/html')) {
+                // Strip X-Frame-Options or CSP for iframe compatibility
+                delete data.headers['x-frame-options'];
+                delete data.headers['content-security-policy'];
+            }
+        },
+    ],
 });
 
-// this line must appear before any express.static calls (or anything else that sends responses)
+// Use unblocker middleware
 app.use(unblocker);
 
-// serve up static files *after* the proxy is run
+// Static file serving for the public directory
 app.use('/', express.static(__dirname + '/public'));
 
-// this is for users who's form actually submitted due to JS being disabled or whatever
-app.get("/no-js", function(req, res) {
-    // grab the "url" parameter from the querystring
-    var site = querystring.parse(url.parse(req.url).query).url;
-    // and redirect the user to /proxy/url
-    res.redirect(unblockerConfig.prefix + site);
+// Handle non-JS users
+app.get('/no-js', (req, res) => {
+    const site = querystring.parse(url.parse(req.url).query).url || '';
+    res.redirect(unblocker.prefix + site);
 });
 
-const port = process.env.PORT || process.env.VCAP_APP_PORT || 8080;
-
-app.listen(port, function() {
-    console.log(`node unblocker process listening at http://localhost:${port}/`);
-}).on("upgrade", unblocker.onUpgrade); // onUpgrade handles websockets
+// Start the server
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+    console.log(`Node unblocker listening at http://localhost:${port}/`);
+}).on('upgrade', unblocker.onUpgrade);
